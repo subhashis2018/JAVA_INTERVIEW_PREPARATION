@@ -1,0 +1,59 @@
+
+
+Q: Find all the even numbers from the list without duplicate ,
+   List<Integer> numbers=Arrays.asList(1,2,3,1,3,2,4,4,5,6,4)
+    
+    Ans: numbers.stream().filter(i->i%2==0).disninct().collect(toList());
+	
+Q: Given list return square	of each numbers.
+   List<Integer> numbers=Arrays.asList(5,3,7,55,19);
+   
+   Ans: numbers.stream().map(x->x*x). collect(toList());
+   
+Q: Given : List<Integer> someNumbers=Arrays.asList(5,34,7,55,19,18,34,27);
+   Find the first square that is divisible by 3 
+
+  ANS: Optional<Integer> firstSquareDivisibleByThree=someNumbers.stream().map(x->x*x).filter(x->x%3==0).findFirst();
+   
+Q: Given two list return all pairs 	of numbers.
+   List<Integer> numbers1=Arrays.asList(1,2,3,4);
+   List<Integer> numbers2=Arrays.asList(6,7);
+   
+   Ans: List<int[]> pairs=numbers.stream().flatMap(i->numbers.stream().map(j->new int[]{i,j}).collect(toList());
+   
+   
+Q: Write down fibonacci series useing stream .
+
+   ANS: Stream.iterate(new int[]{0,1},t->new int[]{t[1],t[0]+t[1]}).limit(10).map(t->t[0]).forEach(System.out::println);
+
+-------------------------------------------------------
+ PROGRAMS
+-------------------------------------------------------
+Q: Write down a program to Reverse string?
+Q: Write down a program to Reverse words of string?
+Q: Write down a program to count words in a given string?
+Q: Write down a program to count vowels in a given string. 
+Q: Write down a program to count occurrence of each vowel in a given String.
+Q: Find length of the last word of a String?
+Q: Find String is Anagram or not?
+Q: Find first repeated character in a String
+
+Q: Write down a program to Reverse number
+Q: Write down a program to check that given number is Armstrong number
+
+
+Q: Write down a program of two threads, where one will print odd number and another will print even number. (even odd thread)
+Q: Write down a program of Deadlock thread.
+
+
+Q: Write down a program to Sort an Array
+Q: Remove duplicate Array :  int [] arr={1,1,2,3,4,5,2,6,7,4}; public Integer[] removeDuplicateFromArray(int []arr){ //return Integer array}
+Q: Write down a program to count repeated elements in an Array.
+Q  Remove duplicate from ArrayList
+Q: Find kth highest Array
+Q: Write down a program to find smallest missing number in an Array
+Q: Write down a program to find maximum and minimum number in an Array.
+Q: Get key from value HashMap
+
+Q: Binary search
+Q: sorting algorithm

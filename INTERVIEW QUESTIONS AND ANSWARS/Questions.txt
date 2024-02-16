@@ -1,0 +1,168 @@
+JAVA
+-------------------------------------------------------
+Q: What are the methods inside object class.
+Q: What is the difference between NULL and VOID?
+Q: How many ways we can create object in java.
+Q: which method of Object class was depricated in JDK 8 and why
+Q: What is the difference between Comparable and Comparator
+Q: What is method chaining
+Q: What is the difference between interface and abstract class.
+Q: What is cloning ? Is there any better approach  then cloning.
+
+Q: Difference between ArrayList and LinkedList? When to use what?
+Q: What is immutable class, what are all its benefits, write down a program ?
+Q: final in []arr change value
+
+Q: What is effectively immutable.
+Q: What are the direct subinterfaces of Collection interface
+Q: How to optimize use of ArrayList
+
+Q: In which scenario finally block wont execute
+Q: Is it possible to handle more then one exception in a single catch block
+
+Q: How many garbage collectors are there in java
+
+Q: Vector Vs Collections.synchronized(aList) Vs CopyOnWriteArrayList
+Q: What is ConcurrentModificationException ? What is fail-fast and fail-safe operations.
+
+Q: How HashMap works internally.
+Q: Difference between hashMap and HashTable.
+
+Q: Why HashMap allows null,(One null key multiple null value)
+
+Q: How to add duplicate values inside Set
+Q: Difference between Comparable and Comparator.
+Q: What are the sorting mechanism Java allows builtin.
+Q: How to create user defined annotation 
+
+Q: What are the design pattern you came accross.
+Q: 
+
+
+Q: How many ways we can create thread;
+Q: Difference between thread start() and run()
+Q: If we invoke t.start() more then once what will happen.
+Q: What are all different states of thread
+
+Q: What is synchronization? Is there any better approach  then synchronization for thread safety
+Q: Difference between synchronization block and synchonization method.
+Q: Difference between Callable -> call() and Runnable-run()
+
+Q: What is the difference between synchronized, Atomic and volatile.
+Q: Why wait() method needs to be called from a synchronized context.
+Q: What locking mechanism java provides.
+Q: Difference between sleep and wait.
+
+
+Q: Explain OOPS concept
+Q: What is abstraction
+Q: What is IS-A and HAS-A relationship
+
+Q: What is mutator method and acessor methods
+Q: Interfaces extends interface or implements interface
+Q: What are rules of overriding
+
+Q: When to use var-arg
+Q: When we do method overloading
+Q: What is covariant return type
+
+Q: Is there any sorted Collection or Map is present in java collection API.
+Q: How to do custom exception handling
+Q: is is possible that try does not have catch or finally
+Q: What are the classes or interfaces we can use with try with resource management
+
+Q: What is recursion and what is tail recursion
+Q: What is the difference between Stack and Queue
+
+
+-------------------------------------------------------
+JAVA 8
+-------------------------------------------------------
+
+Q: Why Java is still enhancing and what benefits we are getting in Jdk 8, list one.
+Q: What are JDK 8 Enhancements.
+Q: How many ways we can create stream
+Q: When to use map, filter and reduce
+Q: What are the uses of Predicate, BiPredicate, Function, BiFunction, Consumer, BiConsumer, Supplier (test-> apply->accept->get)
+Q: What is SAM interface
+Q: Does java supports multiple inheritance
+Q: How to handle diamond problem in SAM interface.
+
+Q: Difference between stream and collection
+Q: What are terminal and intermediate operations
+Q: Difference between map and flatMap
+Q: What are stateless and statefull operations in case of stream
+Q: How to log each intermediate operaion of stream say aList.stream().map().filter().limit().collect(Collectors.toList());
+
+Q: What are the problems with null in programming practices
+Q: What is the use of Optional
+
+   Optional.of()
+   Optional.ofNullable()
+   Optional.empty()
+   
+Q: What is the use of Objects class.  
+Q: How to check a String is null
+Q: Difference between Iterator and generator in stream
+Q: What is mutable accumulator pattern
+Q: What are primitive Optional (Ans OptionalInt, OptionalLong ) when to use it
+Q: Difference between stream and parallel stream.
+
+
+---------------------------------------------------------------------------------
+                                            DATA STRUCTURE
+---------------------------------------------------------------------------------
+Q: What is an algorithm? 
+Q: Why do we need to do an algorithm analysis?
+
+Q: What is stack? Where are stacks used?
+   
+    Expression, evaluation, or conversion of evaluating prefix, post-fix, and infix expressions
+    Syntax parsing
+    String reversal
+    Parenthesis checking
+    Backtracking
+
+Q: What is Queue
+Q: What is LinkedList
+Q: How many types of LinkedList are there
+Q: What LinkedList Java supports.
+Q: What is push, pop.
+Q: Difference between Array and LinkedList.
+Q: What is recursion and what is tail recursion
+Q: What is the difference between Stack and Queue
+Q: What is StackOverFlowException
+Q: Are linked lists considered linear or non-linear data structures? 
+    A linked list is considered both linear and non-linear data structure depending upon the situation.
+      On the basis of data storage, it is considered as a non-linear data structure.
+      On the basis of the access strategy, it is considered as a linear data-structure.
+
+Q: What are the advantages of Linked List over an array?
+Q: What is doubly linked list?
+Q: What is the minimum number of queues that can be used to implement a priority queue? Ans: two
+Q: What is Tree datastructure
+Q: List the types of tree.
+   
+    General Tree
+    Forests
+    Binary Tree
+    Binary Search Tree
+    Expression Tree
+    Tournament Tree
+
+Q: What are Binary trees?
+   A binary Tree is a special type of generic tree in which, each node can have at most two children. 
+   Binary tree is generally partitioned into three disjoint subsets, i.e. the root of the node, 
+   left sub-tree and Right binary sub-tree.
+
+Q: What is the maximum number of nodes in a binary tree of height k?  Ans : 2k+1-1 where k >= 1
+Q: Which data structure suits the most in the tree construction? Queue data structure
+Q: Which data structures are used in BFS and DFS algorithm?
+
+    In BFS algorithm, Queue data structure is used.
+    In DFS algorithm, Stack data structure is used.
+
+
+
+
+
