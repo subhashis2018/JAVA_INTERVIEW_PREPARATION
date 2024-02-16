@@ -65,7 +65,7 @@ class StudentRepositoryTest {
 	
 	@Test
 	void updateStudentNameBYEmailTest(String firstName, String email) {
-		studentRepository.updateStudentNameBYEmail("Ashok","ashok@gmail.com");
+		studentRepository.updateStudentNameBYEmail("Ashok1","ashok@gmail.com");
 	}
 
 }
