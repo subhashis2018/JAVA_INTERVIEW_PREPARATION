@@ -28,39 +28,44 @@ class StudentRepositoryTest {
 
 	@Test
 	@Disabled
-	void saveStudent() {
+	void saveStudentTest() {
 		studentRepository.save(getStudent());
 	}
 
 	@Test
-	void findAllStudent() {
+	void findAllStudentTest() {
 		List<Student> studentList = studentRepository.findAll();
 		System.out.println(studentList);
 	}
 
 	@Test
-	void findByFirstNameContaining(String name) {
+	void findByFirstNameContainingTest(String name) {
 		studentRepository.findByFirstNameContaining("As");
 	}
 
 	@Test
-	void findByLastNameNotNull() {
+	void findByLastNameNotNullTest() {
 		studentRepository.findByLastNameNotNull();
 	}
 
 	@Test
-	void findByGuardian(String guardianName) {
+	void findByGuardianTest(String guardianName) {
 		studentRepository.findByGuardian("Lokesh");
 	}
 
 	@Test
-	void findByFirstNameAndLastName(String firstName, String lastName) {
-		studentRepository.findByFirstNameAndLastName("", "");
+	void findByFirstNameAndLastNameTest(String firstName, String lastName) {
+		studentRepository.findByFirstNameAndLastName("Ashok", "Lenka");
 	}
 
 	@Test
-	void findStudentByEmailAddress(String emailAddress) {
-		studentRepository.findStudentByEmailAddress("");
-	};
+	void findStudentByEmailAddressTest(String emailAddress) {
+		studentRepository.findStudentByEmailAddress("ashok@gmail.com");
+	}
+	
+	@Test
+	void updateStudentNameBYEmailTest(String firstName, String email) {
+		studentRepository.updateStudentNameBYEmail("Ashok","ashok@gmail.com");
+	}
 
 }
