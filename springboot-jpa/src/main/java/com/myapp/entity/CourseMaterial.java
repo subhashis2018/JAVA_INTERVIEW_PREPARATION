@@ -30,6 +30,9 @@ public class CourseMaterial {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "course_material_sequence")
 	@Column(name = "courseMaterialId")
 	private Long courseMterialId;
+	@Column(name="courseMaterialUrl")
 	private URL url;
+	
+	private Course course;
 
 }
