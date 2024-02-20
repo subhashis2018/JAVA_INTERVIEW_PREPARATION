@@ -19,31 +19,26 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
 
 	List<Student> findByFirstName(String firstName);
 
+	List<Student> findByLastName(String lastName);
+
 	List<Student> findByFirstNameContaining(String name);
 
 	List<Student> findByLastNameNotNull();
 
-	List<Student> findByGuardian(String guardianName);
+	List<Student> findByGuardianName(String guardianName);
 
-	List<Student> findByFirstNameAndLastName(String firstName, String lastName);
+	// Native Named Param
 
-	@Query("select s from Student s where s.email=?1")
-	Student findStudentByEmailAddress(String emailAddress);
-
-	@Query("select s.firstName from Student s where s.email=?1")
-	String findFirstNameByEmailAddress(String emailAddress);
-
-	// Native Query
-	@Query(value = "select * from tbl_student s where s.email=?1", nativeQuery = true)
-	Student findStudentByEmailAddressNative(String emailAddress);
-
-	// Native named parameter
-	@Query(value = "select * from tbl_student s where s.email=:email", nativeQuery = true)
-	Student findStudentByEmailAddressNaedParam(@Param("email") String emailAddress);
+	@Query(value = "SELECT * FROM tbl_student s where s.email_address = :emailId", nativeQuery = true)
+	Student getStudentByEmailAddressNativeNamedParam(@Param("emailId") String emailId);
 
 	@Modifying
 	@Transactional
-	@Query(value="update tbl_student set first_name=?1 where email=?2",nativeQuery = true)
-	int updateStudentNameBYEmail(String firstName, String email);
+	@Query(value = "UPDATE tbl_student set first_name =:firstName where email_address =:emailId", nativeQuery = true)
+	int updateStudentNameByEmailId(@Param("firstName") String firstName, @Param("emailId") String emailId);
 
+	@Modifying
+	@Transactional
+	@Query(value = "update tbl_student set first_name = ?1 where email_address = ?2", nativeQuery = true)
+	int updateStudentNameByEmailId1(String firstName, String emailId);
 }
