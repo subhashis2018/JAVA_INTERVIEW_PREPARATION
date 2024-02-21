@@ -22,7 +22,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString(exclude = "course")
+@ToString(exclude = "")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -34,14 +34,11 @@ public class CourseMaterial {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "course_material_sequence")
 	@Column(name = "courseMaterialId")
 	private Long courseMterialId;
-	@Column(name="courseMaterialUrl")
+	@Column(name = "courseMaterialUrl")
 	private String url;
-	
-	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	@JoinColumn(
-			name="course_id",
-			referencedColumnName = "courseId"
-			)
+
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "course_id", referencedColumnName = "courseId")
 	private Course course;
 
 }
