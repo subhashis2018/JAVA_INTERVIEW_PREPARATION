@@ -5,6 +5,7 @@ import java.net.URL;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -21,7 +22,7 @@ import lombok.ToString;
 
 @Getter
 @Setter
-@ToString
+@ToString(exclude = "course")
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
@@ -34,9 +35,9 @@ public class CourseMaterial {
 	@Column(name = "courseMaterialId")
 	private Long courseMterialId;
 	@Column(name="courseMaterialUrl")
-	private URL url;
+	private String url;
 	
-	@OneToOne(cascade = CascadeType.ALL)
+	@OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	@JoinColumn(
 			name="course_id",
 			referencedColumnName = "courseId"

@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -28,7 +29,10 @@ public class Course {
 	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "course_sequence")
 	@Column(name = "courseId")
 	private Long courseId;
-	@Column(name="course_title")
+	@Column(name = "course_title")
 	private String title;
+
+	@OneToOne(mappedBy = "course")
+	private CourseMaterial courseMaterial;
 
 }
