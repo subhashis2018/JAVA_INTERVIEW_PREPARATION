@@ -10,6 +10,8 @@ import com.myapp.entity.Department;
 @Scope(value = "singleton")
 public interface DepartmentRepository extends JpaRepository<Department, Long> {
 
-	//public Department updateDepartment(Long id, Department department);
+	public Department findByDepartmentName(String departmentName);
+
+
 
 }

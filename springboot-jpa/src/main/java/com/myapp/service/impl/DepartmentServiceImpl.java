@@ -38,12 +38,17 @@ public class DepartmentServiceImpl implements DepartmentService {
 			dept.setDepartmentName(department.getDepartmentName());
 		}
 		if (Objects.nonNull(department.getDepartmentCode()) && !"".equalsIgnoreCase(department.getDepartmentCode())) {
-			dept.setDepartmentName(department.getDepartmentCode());
+			dept.setDepartmentCode(department.getDepartmentCode());
 		}
 		if (Objects.nonNull(department.getDepartmentAddress()) && !"".equalsIgnoreCase(department.getDepartmentAddress())) {
-			dept.setDepartmentName(department.getDepartmentAddress());
+			dept.setDepartmentAddress(department.getDepartmentAddress());
 		}
 		return departmentRepository.save(dept);
+	}
+
+	@Override
+	public Department findByDepartmentName(String name) {
+		return departmentRepository.findByDepartmentName(name);
 	}
 
 }
