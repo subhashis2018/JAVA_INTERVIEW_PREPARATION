@@ -1,6 +1,7 @@
 package com.myapp.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import com.myapp.entity.Department;
 
@@ -10,7 +11,7 @@ public interface DepartmentService {
 
 	public List<Department> fetchDepartmentList();
 
-	public Department fetchDepartmentById(Long id);
+	public Optional<Department> fetchDepartmentById(Long id);
 
 	public Department updateDepartment(Long id, Department department);
 

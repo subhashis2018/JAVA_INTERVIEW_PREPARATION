@@ -1,6 +1,7 @@
 package com.myapp.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myapp.entity.Department;
+import com.myapp.exception.DepartmentNotFoundException;
 import com.myapp.service.DepartmentService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -35,8 +37,11 @@ public class DepartmentController {
 	}
 
 	@GetMapping("/department/{id}")
-	public Department fetchDepartmentById(@PathVariable("id") Long id) {
-		return departmentService.fetchDepartmentById(id);
+	public Department fetchDepartmentById(@PathVariable("id") Long id) throws DepartmentNotFoundException {
+		Optional<Department> department=departmentService.fetchDepartmentById(id);
+		if(!department.isPresent())
+			throw new DepartmentNotFoundException("Department not exists");
+		return department.get();
 	}
 	
 	@GetMapping("/department/name/{name}")
