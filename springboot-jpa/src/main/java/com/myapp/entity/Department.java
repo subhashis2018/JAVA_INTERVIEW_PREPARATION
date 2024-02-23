@@ -1,5 +1,7 @@
 package com.myapp.entity;
 
+import javax.validation.constraints.NotBlank;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,6 +27,18 @@ public class Department {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Long departmentId;
+	 /*@Length(max = 5,min =1)
+    @Size(max = 10, min = 0)
+    @Email
+    @Positive
+    @Negative
+    @PositiveOrZero
+    @NegativeOrZero
+    @Future
+    @FutureOrPresent
+    @Past
+    @PastOrPresent*/
+	@NotBlank(message = "Department Name cannot be empty")
 	private String departmentName;
 	private String departmentAddress;
 	private String departmentCode;
