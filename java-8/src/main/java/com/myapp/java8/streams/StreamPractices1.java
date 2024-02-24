@@ -7,6 +7,8 @@ import com.myapp.java8.beans.Book;
 
 public class StreamPractices1  {
 	
+	private static Function<Integer, Integer> func2;
+
 	public static void main(String[] args) {
 		
 		Comparator<Book> byAuthor = Comparator.comparing(Book::getAuthor);
@@ -14,7 +16,7 @@ public class StreamPractices1  {
 		//listOfBooks.sort(Comparator.comparing(Book::getAuthor).thenComparing(Book::getPrice));
 		
 		Function<String, Integer> func = x -> x.length();
-		Function<Integer, Integer> func2 = x -> x * 2;
+		func2 = x -> x * 2;
         Integer apply = func.apply("subhashis");   // 9
         System.out.println(apply);
 		
