@@ -32,4 +32,5 @@ public class KafkaTopicConfig {
 	public NewTopic topicWikimedia() {
 		return TopicBuilder.name(wikimedia_recent_change).build();
 	}
+
 }

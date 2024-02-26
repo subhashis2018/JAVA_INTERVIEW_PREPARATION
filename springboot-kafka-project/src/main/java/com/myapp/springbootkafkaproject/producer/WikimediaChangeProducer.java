@@ -23,8 +23,8 @@ public class WikimediaChangeProducer {
 		this.kafkaTemplate = kafkaTemplate;
 	}
 
-	public void sendWikimediaMessage(String message) {
-		log.info(String.format("This is the topic from WIKIMEDIA %s ->", message));
+	public void sendWikimediaMessage() {
+		log.info("This is the topic from sendWikimediaMessage()");
 		String topic = "wikimedia_change_handler";
 		EventHandler eventHandler = new WikimediaChangeHandler(kafkaTemplate, topic);
 		String url = "https://stream.wikimedia.org/v2/stream/recentchange";

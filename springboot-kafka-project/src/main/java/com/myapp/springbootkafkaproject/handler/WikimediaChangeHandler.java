@@ -34,8 +34,8 @@ public class WikimediaChangeHandler implements EventHandler {
 
 	@Override
 	public void onMessage(String event, MessageEvent messageEvent) throws Exception {
-		log.info(String.format("This is the event from WIKIMEDIA %s -> {0} message event %s-> {1}", event,messageEvent.getData()));
-		kafkaTemplate.send(topic,messageEvent.getData());
+		log.info(String.format("event data -> %s", messageEvent.getData()));
+	    kafkaTemplate.send(topic,messageEvent.getData());
 	}
 
 	@Override
