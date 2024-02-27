@@ -1,0 +1,11 @@
+.\kafka-consumer-groups.bat --bootstrap-server=localhost:9092 --list __consumer_offsets
+
+.\kafka-topics.bat --bootstrap-server=localhost:9092 --list __consumer_offsets
+
+bin/windows/kafka-console-consumer.bat --topic kafka-string-topic --from-beginning --bootstrap-server localhost:9092
+
+bin/windows/kafka-console-consumer.bat --topic kafka-json-topic --from-beginning --bootstrap-server localhost:9092
+
+.\bin\windows\kafka-server-start.bat .\config\server.properties
+
+.\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
