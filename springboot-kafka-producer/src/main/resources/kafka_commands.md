@@ -20,9 +20,9 @@ docker exec -it kafka1 bash
   - **kafka1:19092** refers to the **KAFKA_ADVERTISED_LISTENERS** in the docker-compose.yml file.
 
 ```
-kafka-topics --bootstrap-server kafka1:19092   --create --topic test-topic  --replication-factor 1 --partitions 1
+$ kafka-topics --bootstrap-server kafka1:19092   --create --topic test-topic  --replication-factor 1 --partitions 1
 ```
-
+$ bin/kafka-topics.sh --describe --topic kafka1 --bootstrap-server localhost:9092
 - Produce Messages to the topic.
 
 ```
@@ -93,28 +93,20 @@ docker-compose -f docker-compose-multi-broker.yml up
 - Create topic with the replication factor as 3
 
 ```
-docker exec --interactive --tty kafka1  \
-kafka-topics --bootstrap-server kafka1:19092 \
-             --create \
-             --topic test-topic \
-             --replication-factor 3 --partitions 3
+docker exec --interactive --tty kafka1 kafka-topics --bootstrap-server kafka1:19092 --create --topic test-topic              --replication-factor 3 --partitions 3
 ```
 
 - Produce Messages to the topic.
 
 ```
-docker exec --interactive --tty kafka1  \
-kafka-console-producer --bootstrap-server localhost:9092,kafka2:19093,kafka3:19094 \
-                       --topic test-topic
+docker exec --interactive --tty kafka1 kafka-console-producer --bootstrap-server localhost:9092,kafka2:19093,kafka3:19094                        --topic test-topic
+
 ```
 
 - Consume Messages from the topic.
 
 ```
-docker exec --interactive --tty kafka1  \
-kafka-console-consumer --bootstrap-server localhost:9092,kafka2:19093,kafka3:19094 \
-                       --topic test-topic \
-                       --from-beginning
+docker exec --interactive --tty kafka1  kafka-console-consumer --bootstrap-server ocalhost:9092,kafka2:19093,kafka3:19094                        --topic test-topic --from-beginning
 ```
 #### Log files in Multi Kafka Cluster
 
@@ -139,25 +131,20 @@ docker-compose -f docker-compose-multi-broker.yml down
 - Topic - test-topic
 
 ```
-docker exec --interactive --tty kafka1  \
-kafka-configs  --bootstrap-server localhost:9092 --entity-type topics --entity-name test-topic \
---alter --add-config min.insync.replicas=2
+docker exec --interactive --tty kafka1  kafka-configs  --bootstrap-server localhost:9092 --entity-type topics --entity-name test-topic --alter --add-config min.insync.replicas=2
 ```
 
 - Topic - library-events
 
 ```
-docker exec --interactive --tty kafka1  \
-kafka-configs  --bootstrap-server localhost:9092 --entity-type topics --entity-name library-events \
---alter --add-config min.insync.replicas=2
+docker exec --interactive --tty kafka1 kafka-configs  --bootstrap-server localhost:9092 --entity-type topics --entity-name library-events --alter --add-config min.insync.replicas=2
 ```
 ## Advanced Kafka Commands
 
 ### List the topics in a cluster
 
 ```
-docker exec --interactive --tty kafka1  \
-kafka-topics --bootstrap-server kafka1:19092 --list
+docker exec --interactive --tty kafka1 kafka-topics --bootstrap-server kafka1:19092 --list
 
 ```
 

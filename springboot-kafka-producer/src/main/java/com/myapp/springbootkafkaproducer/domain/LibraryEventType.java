@@ -1,5 +1,6 @@
 package com.myapp.springbootkafkaproducer.domain;
 
-public record LibraryEventType() {
-
+public enum LibraryEventType {
+    NEW,
+    UPDATE
 }

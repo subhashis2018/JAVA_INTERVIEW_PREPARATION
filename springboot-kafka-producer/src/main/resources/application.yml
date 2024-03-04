@@ -7,7 +7,7 @@ spring:
     activate:
       on-profile: local
   kafka:
-    topic:  library-events
+    topic: library-events
     template:
       default-topic: library-events
     producer:

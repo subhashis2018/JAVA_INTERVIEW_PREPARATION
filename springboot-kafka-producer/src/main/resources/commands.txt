@@ -1,0 +1,60 @@
+-----------------------------------------------------------------------------------------------------------------------------------------
+                                               KAFAKA COMMANDS
+-----------------------------------------------------------------------------------------------------------------------------------------
+ .\bin\windows\zookeeper-server-start.bat .\config\zookeeper.properties
+
+ .\bin\windows\kafka-server-start.bat .\config\server.properties
+ 
+ .\bin\windows\kafka-topics.bat --bootstrap-server localhost:9092 --list
+ 
+ .\bin\windows\kafka-topics.bat --zookeeper localhost:2181 --delete --topic fruits_topic
+ 
+ 
+ .\bin\windows/kafka-topics.bat --create --topic vagitable_topic --partitions 4 --replication-factor 1 --bootstrap-server localhost:9092
+ 
+ .\bin\windows\kafka-topics.bat --delete --topic fruits_topic --bootstrap-server localhost:9092
+ 
+ .\bin\windows\kafka-topics.bat  --bootstrap-server localhost:9092 --delete --topic  json_topic kafka-json-topic kafka-string-topic kafka-topic
+
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+                                               DOCKER COMMANDS
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+docker-compose -f docker-compose-multi-broker.yml up
+
+docker build -t springboot-kafka-producer:1.0.0 .
+
+docker run -d -p 8080:8080 --name kafka-producer  -it springboot-kafka-producer:1.0.0 
+
+docker build -t springboot-kafka-consumer:1.0.0 .
+ 
+docker run -d -p 8081:8081 --name kafka-consumer  -it springboot-kafka-consumer:1.0.0
+
+docker exec -it springboot-kafka-consumer:1.0.0 /bin/sh
+
+docker exec -it springboot-kafka-consumer:1.0.0 //bin//sh
+
+docker scout quickview apache/kafka:3.7.0
+
+docker scout cves apache/kafka:3.7.0
+
+docker scout recommendations apache/kafka:3.7.0
+
+
+-----------------------------------------------------------------------------------------------------------------------------------------
+
+                                                          LOCAL HOST                                   
+-----------------------------------------------------------------------------------------------------------------------------------------
+curl -i \
+-d '{"libraryEventId":null,"libraryEventType": "NEW","book":{"bookId":456,"bookName":"Kafka Using Spring Boot","bookAuthor":"subh"}}' \
+-H "Content-Type: application/json" \
+-X POST http://localhost:8080/v1/libraryevent
+
+curl http://localhost:8080/v1/libraryevent
+
+
+
+
