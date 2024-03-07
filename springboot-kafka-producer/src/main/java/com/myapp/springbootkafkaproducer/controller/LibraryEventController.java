@@ -1,6 +1,7 @@
 package com.myapp.springbootkafkaproducer.controller;
 
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.TimeoutException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,22 +22,21 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @Slf4j
 public class LibraryEventController {
-	
-	@Autowired
-    private final LibraryEventProducer libraryEventProducer;
 
-	 public LibraryEventController(LibraryEventProducer libraryEventProducer) {
+	@Autowired
+	private final LibraryEventProducer libraryEventProducer;
+
+	public LibraryEventController(LibraryEventProducer libraryEventProducer) {
 		super();
 		this.libraryEventProducer = libraryEventProducer;
 	}
 
 	@PostMapping("/v1/libraryevent")
-	    public ResponseEntity<?> postLibraryEvent(@RequestBody @Valid LibraryEvent libraryEvent) throws JsonProcessingException{
-            log.info("LibraryEvent created : ->{}",libraryEvent);	
-            libraryEventProducer.sendLibraryEvent(libraryEvent);
-	        return ResponseEntity.status(HttpStatus.CREATED).body(libraryEvent);
-	    }
-
-	    
+	public ResponseEntity<?> postLibraryEvent(@RequestBody @Valid LibraryEvent libraryEvent)
+			throws JsonProcessingException, InterruptedException, ExecutionException, TimeoutException {
+		log.info("LibraryEvent created : ->{}", libraryEvent);
+		libraryEventProducer.sendLibraryEvent_approach2(libraryEvent);
+		return ResponseEntity.status(HttpStatus.CREATED).body(libraryEvent);
+	}
 
 }

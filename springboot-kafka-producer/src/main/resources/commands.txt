@@ -31,11 +31,22 @@ docker run -d -p 8080:8080 --name kafka-producer  -it springboot-kafka-producer:
 
 docker build -t springboot-kafka-consumer:1.0.0 .
  
-docker run -d -p 8081:8081 --name kafka-consumer  -it springboot-kafka-consumer:1.0.0
+docker exec -it kafka1 bash
 
-docker exec -it springboot-kafka-consumer:1.0.0 /bin/sh
+docker exec --interactive --tty kafka1 kafka-console-producer --bootstrap-server kafka1:19092 --topic kv-topic --property "key.separator=-" --property "parse.key=true"
 
-docker exec -it springboot-kafka-consumer:1.0.0 //bin//sh
+docker exec --interactive --tty kafka1 kafka-console-producer --bootstrap-server kafka1:19092 --topic kv-topic --property "key.separator=-" --property "parse.key=true"
+
+docker exec --interactive --tty kafka1 kafka-console-consumer --bootstrap-server kafka1:19092 --topic kv-topic --from-beginning --property "key.separator= - " --property "print.key=true"
+
+docker exec --interactive --tty kafka1 kv-topic --bootstrap-server kafka1:19092 --describe
+
+docker exec --interactive --tty kafka1 kafka-topics --bootstrap-server kafka1:19092 --describe  --topic kv-topic
+
+docker exec --interactive --tty kafka1 kafka-topics --bootstrap-server kafka1:19092 --alter --topic kv-topic --partitions 2
+
+docker exec --interactive --tty kafka1 kafka-console-producer --bootstrap-server localhost:9092 kafka2:19093 kafka3:19094 --topic kv-topic --property "key.separator=-" --property "parse.key=true"
+
 
 docker scout quickview apache/kafka:3.7.0
 

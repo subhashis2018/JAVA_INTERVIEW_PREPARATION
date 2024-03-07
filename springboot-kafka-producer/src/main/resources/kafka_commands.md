@@ -22,7 +22,9 @@ docker exec -it kafka1 bash
 ```
 $ kafka-topics --bootstrap-server kafka1:19092   --create --topic test-topic  --replication-factor 1 --partitions 1
 ```
+```
 $ bin/kafka-topics.sh --describe --topic kafka1 --bootstrap-server localhost:9092
+```
 - Produce Messages to the topic.
 
 ```

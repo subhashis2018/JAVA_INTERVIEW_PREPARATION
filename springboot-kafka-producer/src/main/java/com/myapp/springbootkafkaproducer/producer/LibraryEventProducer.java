@@ -37,10 +37,13 @@ public class LibraryEventProducer {
 		this.objectMapper = objectMapper;
 	}
 
-	public CompletableFuture<SendResult<Integer, String>> sendLibraryEvent(LibraryEvent libraryEvent)
-			throws JsonProcessingException {
+	// Recomended asynchronous approach
+
+	public CompletableFuture<SendResult<Integer, String>> sendLibraryEvent_approach1(LibraryEvent libraryEvent) throws JsonProcessingException {
 		var key = libraryEvent.libraryEventId();
 		var value = objectMapper.writeValueAsString(libraryEvent);
+		// 1 : blocking call, get metadata about kafka cluster
+		// 2: send message happens, returns a completable future
 		var completableFuture = kafkaTemplate.send(topic, key, value);
 		return completableFuture.whenComplete((sendResult, throwable) -> {
 			if (throwable == null) {
@@ -52,15 +55,50 @@ public class LibraryEventProducer {
 
 	}
 
-	private void handleSuccess(Integer key, String value, SendResult<Integer, String> sendResult) {
-		log.info("Sending message for Key: {} ,and Value: {},Partition is: {}", key, value,
-				sendResult.getRecordMetadata().partition());
+	public SendResult<Integer, String> sendLibraryEvent_approach2(LibraryEvent libraryEvent)
+			throws JsonProcessingException, InterruptedException, ExecutionException, TimeoutException {
+		var key = libraryEvent.libraryEventId();
+		var value = objectMapper.writeValueAsString(libraryEvent);
+		// 1 : blocking call, get metadata about kafka cluster
+		// 2: Block and wait until the message is sent to kafka
+		var sendResult = kafkaTemplate.send(topic, key, value)
+				// get()
+				.get(3, TimeUnit.SECONDS);
+		handleSuccess(key, value, sendResult);
+		return sendResult;
+	}
+
+	// Recomended asynchronous approach
+
+	public CompletableFuture<SendResult<Integer, String>> sendLibraryEvent_approach3(LibraryEvent libraryEvent) throws JsonProcessingException {
+		var key = libraryEvent.libraryEventId();
+		var value = objectMapper.writeValueAsString(libraryEvent);
+
+		var producerRecord = buildProduceRecord(key, value);
+		// 1 : blocking call, get metadata about kafka cluster
+		// 2: send message happens, returns a completable future
+		var completableFuture = kafkaTemplate.send(producerRecord);
+		return completableFuture.whenComplete((sendResult, throwable) -> {
+			if (throwable == null) {
+				handleFailure(key, value, throwable);
+			} else {
+				handleSuccess(key, value, sendResult);
+			}
+		});
 
 	}
 
+	private ProducerRecord<Integer, String> buildProduceRecord(Integer key, String value) {
+		List<Header> recordHeader = List.of(new RecordHeader("event-source", "scanner".getBytes()));
+		return new ProducerRecord<>(topic, null, key, value, recordHeader);
+	}
+
+	private void handleSuccess(Integer key, String value, SendResult<Integer, String> sendResult) {
+		log.info("Sending message for Key: {} ,and Value: {},Partition is: {}", key, value, sendResult.getRecordMetadata().partition());
+	}
+
 	private void handleFailure(Integer key, String value, Throwable throwable) {
-		log.error("Error sending message for key: {} , value: {} and Exception occured: {}", key, value,
-				throwable.getMessage());
+		log.error("Error sending message for key: {} , value: {} and Exception occured: {}", key, value, throwable.getMessage());
 	}
 
 }
