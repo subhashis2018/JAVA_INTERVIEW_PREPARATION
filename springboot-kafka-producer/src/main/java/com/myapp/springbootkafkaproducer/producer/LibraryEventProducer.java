@@ -37,7 +37,7 @@ public class LibraryEventProducer {
 		this.objectMapper = objectMapper;
 	}
 
-	// Recomended asynchronous approach
+	// Recommended asynchronous approach
 
 	public CompletableFuture<SendResult<Integer, String>> sendLibraryEvent_approach1(LibraryEvent libraryEvent) throws JsonProcessingException {
 		var key = libraryEvent.libraryEventId();
