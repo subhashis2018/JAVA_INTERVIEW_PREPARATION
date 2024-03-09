@@ -1,4 +1,4 @@
-package com.myapp.springbootkafkaproducer.controller;
+package com.myapp.kaproducer.controller;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeoutException;
@@ -12,9 +12,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
-import com.myapp.springbootkafkaproducer.domain.LibraryEvent;
-import com.myapp.springbootkafkaproducer.domain.LibraryEventType;
-import com.myapp.springbootkafkaproducer.producer.LibraryEventProducer;
+import com.myapp.kafkaproducer.domain.LibraryEvent;
+import com.myapp.kafkaproducer.domain.LibraryEventType;
+import com.myapp.kaproducer.producer.LibraryEventProducer;
 
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;

@@ -1,4 +1,4 @@
-package com.myapp.springbootkafkaproducer.domain;
+package com.myapp.kafkaproducer.domain;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
